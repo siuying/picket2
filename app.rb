@@ -16,8 +16,8 @@ helpers SitesHelper
 configure do
   @scheduler = Rufus::Scheduler.start_new
   @scheduler.every(Settings.interval) do
-    Settings.sites.each do |url|
-      site = SiteChecker.perform(url)
+    sites = SiteChecker.check_urls(Settings.sites)
+    sites.each do |site|
       puts "#{site.url} - #{site.state}"
     end
   end
