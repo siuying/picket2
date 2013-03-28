@@ -15,4 +15,4 @@ test:
 production:
   <<: *defaults
   database_url: <%= ENV["DATABASE_URL"] %>
-  sites: <%= ENV["CHECK_URLS"] %>
+  sites: <%= ENV["CHECK_URLS"].split(",") %>
