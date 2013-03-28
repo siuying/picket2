@@ -12,6 +12,7 @@ set :database, Settings.database_url
 
 task :default do
   Settings.sites.each do |url|
-    SiteChecker.perform(url)
+    site = SiteChecker.perform(url)
+    puts "#{site.url} #{site.state}"
   end
 end

@@ -11,10 +11,13 @@ require "jobs/site_checker"
 set :database, Settings.database_url
 
 configure do
-  # @scheduler = Rufus::Scheduler.start_new
-  # @scheduler.every('20s') do
-  #   puts "#{Time.now} hello world"
-  # end
+  @scheduler = Rufus::Scheduler.start_new
+  @scheduler.every(Settings.interval) do
+    Settings.sites.each do |url|
+      site = SiteChecker.perform(url)
+      puts "#{site.url} - #{site.state}"
+    end
+  end
 end
 
 get "/" do

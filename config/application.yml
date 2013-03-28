@@ -1,6 +1,8 @@
 defaults: &defaults
+  interval: "1m"
   sites:
     - "http://google.com"
+  http_timeout: 15
 
 development:
   <<: *defaults

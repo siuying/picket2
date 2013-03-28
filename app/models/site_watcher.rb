@@ -21,7 +21,7 @@ class SiteWatcher
     end
 
     @site.save!
-    @site.state
+    @site
   end
   
   private
