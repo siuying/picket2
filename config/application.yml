@@ -1,0 +1,15 @@
+defaults: &defaults
+  sites:
+    - "http://google.com"
+
+development:
+  <<: *defaults
+  database_url: "sqlite3:///development.sqlite3"
+
+test:
+  <<: *defaults
+  database_url: "sqlite3:///test.sqlite3"
+
+production:
+  <<: *defaults
+  database_url: "sqlite3:///production.sqlite3"
