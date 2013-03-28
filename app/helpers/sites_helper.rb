@@ -14,7 +14,7 @@ module SitesHelper
 
   def message_for_site(site)
     site_name = site.url.gsub(%r{^http://}, "")
-    site_link = %{<a href="site.url" target="_BLANK">#{site_name}</a>}
+    site_link = %{<a href="#{site.url}" target="_BLANK">#{site_name}</a>}
     case site.state
     when "unknown"
       "#{site_link} will be watched soon"
