@@ -16,7 +16,7 @@ This app work on heroku!
 
 - Checkout this repository
 - Install dependencies by running command: ```bundle install```
-- Edit the configuartion files in ```config/application.yml```
+- Edit the configuartion file ```config/application.yml```
   - ```sites```: array of URL to be checked
   - ```interval```: time for each requests being fired, default "1m"
   - ```http_timeout```: timeout of http request
@@ -29,7 +29,7 @@ This app work on heroku!
 
     The MIT License
 
-    Copyright (c) 2012 Francis Chong
+    Copyright (c) 2013 Francis Chong
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
