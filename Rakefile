@@ -11,8 +11,8 @@ require "jobs/site_checker"
 set :database, Settings.database_url
 
 task :default do
-  Settings.sites.each do |url|
-    site = SiteChecker.perform(url)
-    puts "#{site.url} #{site.state}"
+  sites = SiteChecker.check_urls(Settings.sites)
+  sites.each do |site|
+    puts "#{site.url} - #{site.state}"
   end
 end
