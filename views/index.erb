@@ -1,0 +1,10 @@
+<table class="table" id="sites-table">
+<% @sites.each do |site| %>
+  <tr>
+    <td class="span7 description">
+      <%= icon_for_site(site)%> <%= message_for_site(site) %> 
+      <small><%= site.failed? ? site.message : "" %></small>
+    </td>
+  </tr>
+<% end %>
+</table>

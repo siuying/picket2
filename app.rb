@@ -4,11 +4,14 @@ Bundler.require
 
 $LOAD_PATH << "app"
 
+require "helpers/sites_helper"
 require "models/settings"
 require "models/site"
 require "jobs/site_checker"
 
 set :database, Settings.database_url
+set :public_folder, File.dirname(__FILE__) + '/public'
+helpers SitesHelper
 
 configure do
   @scheduler = Rufus::Scheduler.start_new
@@ -21,5 +24,7 @@ configure do
 end
 
 get "/" do
-  "Hello"
+  @sites = Site.all
+  puts "#{@sites.size} sites"
+  erb :index
 end
