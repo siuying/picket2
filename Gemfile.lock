@@ -21,6 +21,9 @@ GEM
     i18n (0.6.1)
     mime-types (1.21)
     multi_json (1.7.2)
+    pg (0.15.0)
+    puma (1.6.3)
+      rack (~> 1.2)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
@@ -46,6 +49,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  pg
+  puma
   rake
   rufus-scheduler
   settingslogic
