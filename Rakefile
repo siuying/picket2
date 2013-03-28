@@ -1,12 +1,13 @@
 require "rubygems"
 require "bundler"
 Bundler.require
-
+require "sinatra/activerecord/rake"
 $LOAD_PATH << "app"
 
 require "models/settings"
 require "models/site"
 require "jobs/site_checker"
+require "sinatra/activerecord"
 
 set :database, Settings.database_url
 
