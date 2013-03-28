@@ -5,9 +5,6 @@ class CreateSites < ActiveRecord::Migration
       t.string :state, :default => "unknown"
       t.string :message, :default => ""
 
-      t.boolean :content_validate_type, :default => false
-      t.string :content_validate_text
-
       t.datetime :ok_at
       t.datetime :failed_at
       t.integer :user_id

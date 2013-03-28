@@ -10,8 +10,14 @@ gem 'settingslogic'
 gem 'sinatra'
 gem 'sinatra-activerecord', :require => "sinatra/activerecord"
 
+# HTTP
+gem "typhoeus"
+
 # Database
 gem 'sqlite3'
+
+# State Machine
+gem "transitions", :require => ["transitions", "active_record/transitions"]
 
 group :development do 
   gem 'rake'

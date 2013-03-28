@@ -1,6 +1,17 @@
-require "sinatra/activerecord/rake"
-require "./app"
+require "rubygems"
+require "bundler"
+Bundler.require
+
+$LOAD_PATH << "app"
+
+require "models/settings"
+require "models/site"
+require "jobs/site_checker"
+
+set :database, Settings.database_url
 
 task :default do
-  puts Settings.sites
+  Settings.sites.each do |url|
+    SiteChecker.perform(url)
+  end
 end
