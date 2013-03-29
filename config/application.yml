@@ -21,5 +21,5 @@ production:
   sites: <%= ENV["CHECK_URLS"].split(",") rescue [""] %>
   interval: <%= ENV["CHECK_INTERVAL"] || "1m" %>
   http:
-    concurrency: <%= ENV["HTTP_CONCURRENCY"] ? ENV["HTTP_CONCURRENCY"].to_i : 5 %>
+    concurrency: <%= ENV["HTTP_CONCURRENCY"] ? ENV["HTTP_CONCURRENCY"].to_i : 2 %>
     timeout: <%= ENV["HTTP_TIMEOUT"] ? ENV["HTTP_TIMEOUT"].to_i : 15 %>
