@@ -15,8 +15,16 @@ gem 'puma'
 gem "typhoeus"
 
 # Database
-gem 'sqlite3', :group => :development
-gem 'pg', :group => :production
+
+platforms :jruby do
+  gem 'jruby-openssl'
+  gem 'activerecord-jdbcsqlite3-adapter'
+end
+
+platforms :ruby do
+  gem 'sqlite3', :group => :development
+  gem 'pg', :group => :production
+end
 
 # State Machine
 gem "transitions", :require => ["transitions", "active_record/transitions"]
