@@ -5,6 +5,7 @@ Bundler.require
 $LOAD_PATH << "app"
 
 require "helpers/sites_helper"
+require "mailers/sites_mailer"
 require "models/settings"
 require "models/site"
 require "jobs/site_checker"
@@ -20,6 +21,23 @@ configure do
     sites.each do |site|
       puts "#{site.url} - #{site.state} (#{site.last_response_time})"
     end
+  end
+
+  # Email setup
+  if production?
+    ActionMailer::Base.smtp_settings = {
+      :address => "smtp.sendgrid.net",
+      :port => '25',
+      :authentication => :plain,
+      :user_name => Settings.email.username,
+      :password => Settings.email.password,
+      :domain => Settings.email.domain
+    }
+    ActionMailer::Base.view_paths = File.join(Sinatra::Application.root, 'views')
+  else
+    ActionMailer::Base.delivery_method = :file
+    ActionMailer::Base.file_settings = { :location => File.join(Sinatra::Application.root, 'tmp/emails') }
+    ActionMailer::Base.view_paths = File.join(Sinatra::Application.root, 'views')
   end
 end
 
