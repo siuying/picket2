@@ -24,7 +24,7 @@ configure do
 end
 
 get "/" do
-  @sites = Site.all
+  @sites = Site.order(:url).all
   puts "#{@sites.size} sites"
   erb :index
 end
