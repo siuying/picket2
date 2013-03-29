@@ -1,8 +1,8 @@
 class SiteWatcher
-  def initialize(site, hydra=Typhoeus::Hydra.hydra)
+  def initialize(site, timeout=15, hydra=Typhoeus::Hydra.hydra)
     @hydra = hydra
     @site = site
-    @http_timeout = Settings.http_timeout
+    @http_timeout = timeout
   end
 
   # use typhoeus to make a request and wait for response

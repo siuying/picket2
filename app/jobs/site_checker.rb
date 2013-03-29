@@ -8,16 +8,16 @@ class SiteChecker
   # hydra - Typhoeus Hydra object, by default create a new hydra
   # 
   # Returns hydra request, caller should run the hydra to fire the check
-  def self.check_url(url, hydra=Typhoeus::Hydra.new)
+  def self.check_url(url, timeout=15, hydra=Typhoeus::Hydra.new)
     site = Site.where(:url => url).first || Site.create(:url => url)
-    SiteWatcher.new(site, hydra).watch
+    SiteWatcher.new(site, timeout, hydra).watch
   end
 
   # Check all status
-  def self.check_urls(urls)
-    hydra = Typhoeus::Hydra.new
+  def self.check_urls(urls, timeout=15, concurrency=20)
+    hydra = Typhoeus::Hydra.new(:max_concurrency => concurrency)
     requests = Settings.sites.collect do |url|
-      SiteChecker.check_url(url, hydra)
+      SiteChecker.check_url(url, timeout, hydra)
     end
     hydra.run
     requests.collect do |r|
