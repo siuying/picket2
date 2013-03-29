@@ -24,6 +24,7 @@ class SiteWatcher
         @site.failed!
         @site.message = "Server returned: #{response.code.to_s} #{response.status_message}"
       end
+      @site.last_response_time = response.total_time
       @site.save!
       @site
     end
