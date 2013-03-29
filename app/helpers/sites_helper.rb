@@ -25,5 +25,13 @@ module SitesHelper
     else
       raise "unexpected state: #{site.state}"
     end
+  end
+
+  def last_response_time_for_site(site)
+    if site.last_response_time
+      "(#{"%.1f" % [site.last_response_time * 1000]} ms)"
+    else
+      ""
+    end
   end  
 end

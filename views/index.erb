@@ -3,7 +3,10 @@
   <tr>
     <td class="span7 description">
       <%= icon_for_site(site)%> <%= message_for_site(site) %> 
-      <small><%= site.failed? ? site.message : "" %></small>
+      <small>
+        <%= site.failed? ? site.message : "" %>
+        <%= last_response_time_for_site(site) %>
+      </small>
     </td>
   </tr>
 <% end %>
