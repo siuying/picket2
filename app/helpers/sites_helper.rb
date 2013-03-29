@@ -29,7 +29,7 @@ module SitesHelper
 
   def last_response_time_for_site(site)
     if site.last_response_time
-      "%.1f ms" % [Site.first.last_response_time * 1000]
+      "(%.1f ms)" % [Site.first.last_response_time * 1000]
     else
       ""
     end
