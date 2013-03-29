@@ -6,6 +6,9 @@ defaults: &defaults
   http:
     concurrency: 20
     timeout: 15
+  email:
+    sender: picket@email.com
+    receiver: receiver@email.com
 
 development:
   <<: *defaults
@@ -23,3 +26,9 @@ production:
   http:
     concurrency: <%= ENV["HTTP_CONCURRENCY"] ? ENV["HTTP_CONCURRENCY"].to_i : 2 %>
     timeout: <%= ENV["HTTP_TIMEOUT"] ? ENV["HTTP_TIMEOUT"].to_i : 15 %>
+  email:
+    sender: <%= ENV["EMAIL_SENDER"] %>
+    receiver: <%= ENV["EMAIL_RECEIVER"] %>
+    username: <%= ENV['SENDGRID_USERNAME'] %>
+    password: <%= ENV['SENDGRID_PASSWORD'] %>
+    domain: <%= ENV['SENDGRID_DOMAIN'] %>

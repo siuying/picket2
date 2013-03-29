@@ -1,6 +1,19 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    actionmailer (3.2.13)
+      actionpack (= 3.2.13)
+      mail (~> 2.5.3)
+    actionpack (3.2.13)
+      activemodel (= 3.2.13)
+      activesupport (= 3.2.13)
+      builder (~> 3.0.0)
+      erubis (~> 2.7.0)
+      journey (~> 1.0.4)
+      rack (~> 1.4.5)
+      rack-cache (~> 1.2)
+      rack-test (~> 0.6.1)
+      sprockets (~> 2.2.1)
     activemodel (3.2.13)
       activesupport (= 3.2.13)
       builder (~> 3.0.0)
@@ -14,33 +27,57 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     builder (3.0.4)
+    erubis (2.7.0)
     ethon (0.5.10)
       ffi (~> 1.3.0)
       mime-types (~> 1.18)
     ffi (1.3.1)
+    hike (1.2.1)
     i18n (0.6.1)
+    journey (1.0.4)
+    json (1.7.7)
+    mail (2.5.3)
+      i18n (>= 0.4.0)
+      mime-types (~> 1.16)
+      treetop (~> 1.4.8)
     mime-types (1.21)
     multi_json (1.7.2)
     pg (0.15.0)
+    polyglot (0.3.3)
     puma (1.6.3)
       rack (~> 1.2)
-    rack (1.5.2)
+    rack (1.4.5)
+    rack-cache (1.2)
+      rack (>= 0.4)
     rack-protection (1.5.0)
       rack
+    rack-test (0.6.2)
+      rack (>= 1.0)
     rake (10.0.4)
     rufus-scheduler (2.0.18)
       tzinfo (>= 0.3.23)
+    sendgrid (1.1.0)
+      json
+      json
     settingslogic (2.0.9)
-    sinatra (1.4.2)
-      rack (~> 1.5, >= 1.5.2)
-      rack-protection (~> 1.4)
-      tilt (~> 1.3, >= 1.3.4)
+    sinatra (1.3.6)
+      rack (~> 1.4)
+      rack-protection (~> 1.3)
+      tilt (~> 1.3, >= 1.3.3)
     sinatra-activerecord (1.2.2)
       activerecord (~> 3.0)
       sinatra (~> 1.0)
+    sprockets (2.2.2)
+      hike (~> 1.2)
+      multi_json (~> 1.0)
+      rack (~> 1.0)
+      tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
     tilt (1.3.6)
     transitions (0.1.8)
+    treetop (1.4.12)
+      polyglot
+      polyglot (>= 0.3.1)
     typhoeus (0.6.2)
       ethon (~> 0.5.10)
     tzinfo (0.3.37)
@@ -49,10 +86,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionmailer (~> 3.2.0)
+  activerecord (~> 3.2.0)
   pg
   puma
+  rack (~> 1.4.0)
   rake
   rufus-scheduler
+  sendgrid
   settingslogic
   sinatra
   sinatra-activerecord
