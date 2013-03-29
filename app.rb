@@ -18,7 +18,7 @@ configure do
   @scheduler.every(Settings.interval) do
     sites = SiteChecker.check_urls(Settings.sites)
     sites.each do |site|
-      puts "#{site.url} - #{site.state}"
+      puts "#{site.url} - #{site.state} (#{site.last_response_time})"
     end
   end
 end
