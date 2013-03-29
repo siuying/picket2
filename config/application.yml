@@ -16,3 +16,4 @@ production:
   <<: *defaults
   database_url: <%= ENV["DATABASE_URL"] %>
   sites: <%= ENV["CHECK_URLS"].split(",") %>
+  interval: <%= ENV["CHECK_INTERVAL"] || "1m" %>
