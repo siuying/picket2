@@ -21,6 +21,7 @@ This app work on heroku!
   - ```interval```: time for each requests being fired, default "1m"
   - ```http.timeout```: timeout of http request
   - ```http.concurrency```: concurrency to run http request
+  - ```email.*```: email notification settings. Add sendgrid sender/receiver email, username, password and domain.
 - Setup database
   - ```rake db:migrate```
 - Run the applications by running command: foreman start -p 3000
