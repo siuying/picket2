@@ -19,7 +19,8 @@ This app work on heroku!
 - Edit the configuartion file ```config/application.yml```
   - ```sites```: array of URL to be checked
   - ```interval```: time for each requests being fired, default "1m"
-  - ```http_timeout```: timeout of http request
+  - ```http.timeout```: timeout of http request
+  - ```http.concurrency```: concurrency to run http request
 - Setup database
   - ```rake db:migrate```
 - Run the applications by running command: foreman start -p 3000
