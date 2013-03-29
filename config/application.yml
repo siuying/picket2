@@ -15,5 +15,5 @@ test:
 production:
   <<: *defaults
   database_url: <%= ENV["DATABASE_URL"] %>
-  sites: <%= ENV["CHECK_URLS"].split(",") %>
+  sites: <%= ENV["CHECK_URLS"].split(",") rescue [""] %>
   interval: <%= ENV["CHECK_INTERVAL"] || "1m" %>
