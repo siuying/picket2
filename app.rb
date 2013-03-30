@@ -5,10 +5,8 @@ Bundler.require
 $LOAD_PATH << "app"
 
 require "helpers/sites_helper"
-require "mailers/sites_mailer"
+require "models/site_watcher"
 require "models/settings"
-require "models/site"
-require "jobs/site_checker"
 
 set :database, Settings.database_url
 set :public_folder, File.dirname(__FILE__) + '/public'
@@ -18,7 +16,7 @@ configure do
   @scheduler = Rufus::Scheduler.start_new
   @scheduler.every(Settings.interval) do
     hydra = Typhoeus::Hydra.new(:max_concurrency => Settings.http.concurrency)
-    sites = SiteChecker.check_urls(Settings.sites, Settings.http.timeout, hydra)
+    sites = SiteWatcher.watch_urls(Settings.sites, Settings.http.timeout, hydra)
     sites.each do |site|
       puts "#{site.url} - #{site.state} (#{site.last_response_time})"
     end

@@ -1,5 +1,6 @@
 require 'typhoeus'
 require_relative '../mailers/sites_mailer'
+require_relative './site'
 
 class SiteWatcher
   attr_reader :site, :mailer, :hydra, :http_timeout
@@ -49,4 +50,22 @@ class SiteWatcher
     request
   end
 
+  # Watch set of URLS, update their status in db, and send notification if needed
+  # 
+  # urls - array of url, if not in db, create a Site object
+  # timeout - (optional) http timeout in seconds, default 15s
+  # mailer - (optional) notification email sender
+  # hydra - (optional) typhoeus hydra object to manage concurrent connections
+  # 
+  # Return array of sites
+  def self.watch_urls(urls, timeout=15, mailer=SitesMailer, hydra=Typhoeus::Hydra.new)
+    requests = urls.collect do |url|
+      site = Site.find_or_create_with_url(url)
+      request = SiteWatcher.new(site, timeout, mailer, hydra).watch
+    end
+    hydra.run
+    requests.collect do |r|
+      r.response.handled_response
+    end
+  end
 end

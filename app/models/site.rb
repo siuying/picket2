@@ -3,6 +3,10 @@ require 'transitions'
 class Site < ActiveRecord::Base
   include ActiveRecord::Transitions
 
+  def self.find_or_create_with_url(url)
+    Site.where(:url => url).first || Site.create(:url => url)
+  end
+
   state_machine do
     state :unknown
     state :ok
