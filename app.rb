@@ -17,7 +17,8 @@ helpers SitesHelper
 configure do
   @scheduler = Rufus::Scheduler.start_new
   @scheduler.every(Settings.interval) do
-    sites = SiteChecker.check_urls(Settings.sites, Settings.http.timeout, Settings.http.concurrency)
+    hydra = Typhoeus::Hydra.new(:max_concurrency => Settings.http.concurrency)
+    sites = SiteChecker.check_urls(Settings.sites, Settings.http.timeout, hydra)
     sites.each do |site|
       puts "#{site.url} - #{site.state} (#{site.last_response_time})"
     end

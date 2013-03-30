@@ -5,11 +5,10 @@ class SiteChecker
   # Check all status
   # urls - array of URL
   # timeout - http timeout, in second, default 15
-  # concurrency - http concurrency, defautl 20
-  def self.check_urls(urls, timeout=15, concurrency=20)
-    hydra = Typhoeus::Hydra.new(:max_concurrency => concurrency)
-    requests = Settings.sites.collect do |url|
-      SiteChecker.check_url(url, timeout, hydra)
+  # hydra - http concurrency, defautl 20
+  def self.check_urls(urls, timeout=15, mailer=SitesMailer, hydra=Typhoeus::Hydra.new)
+    requests = urls.collect do |url|
+      SiteChecker.check_url(url, timeout, mailer, hydra)
     end
     hydra.run
     requests.collect do |r|
@@ -24,8 +23,8 @@ class SiteChecker
   # hydra - Typhoeus Hydra object, by default create a new hydra
   # 
   # Returns hydra request, caller should run the hydra to fire the check
-  def self.check_url(url, timeout=15, hydra=nil)
+  def self.check_url(url, timeout=15, mailer, hydra)
     site = Site.where(:url => url).first || Site.create(:url => url)
-    request = SiteWatcher.new(site, timeout, hydra).watch
+    request = SiteWatcher.new(site, timeout, mailer, hydra).watch
   end
 end

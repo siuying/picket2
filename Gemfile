@@ -29,4 +29,10 @@ gem "transitions", :require => ["transitions", "active_record/transitions"]
 
 group :development do 
   gem 'rake'
+  gem 'pry'
+end
+
+group :test do
+  gem 'rspec'
+  gem 'webmock'
 end

@@ -16,7 +16,7 @@ development:
 
 test:
   <<: *defaults
-  database_url: "sqlite3:///test.sqlite3"
+  database_url: "sqlite3::memory:"
 
 production:
   <<: *defaults
