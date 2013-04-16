@@ -4,6 +4,7 @@ Bundler.require
 
 $LOAD_PATH << "app"
 
+require "models/site"
 require "helpers/sites_helper"
 require "models/site_watcher"
 require "models/settings"
